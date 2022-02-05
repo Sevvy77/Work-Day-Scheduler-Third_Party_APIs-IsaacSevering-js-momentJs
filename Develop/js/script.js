@@ -1,66 +1,67 @@
+const saveButton = $(".saveBtn");
 var myDay = [
     {
         id: "0",
         hour: "09",
         time: "09",
         meridiem: "am",
-        reminder: ""
+        reminder: "f",
     },
     {
         id: "1",
         hour: "10",
         time: "10",
         meridiem: "am",
-        reminder: ""
+        reminder: "f",
     },
     {
         id: "2",
         hour: "11",
         time: "11",
         meridiem: "am",
-        reminder: ""
+        reminder: "f",
     },
     {
         id: "3",
         hour: "12",
         time: "12",
         meridiem: "pm",
-        reminder: ""
+        reminder: "f",
     },
     {
         id: "4",
         hour: "01",
         time: "13",
         meridiem: "pm",
-        reminder: ""
+        reminder: "f",
     },
     {
         id: "5",
         hour: "02",
         time: "14",
         meridiem: "pm",
-        reminder: ""
+        reminder: "f",
     },
     {
         id: "6",
         hour: "03",
         time: "15",
         meridiem: "pm",
-        reminder: ""
+        reminder: "f",
     },
     {
         id: "7",
         hour: "04",
         time: "16",
         meridiem: "pm",
-        reminder: ""
+        reminder: "f",
     },
     {
         id: "8",
         hour: "05",
         time: "17",
         meridiem: "pm",
-        reminder: ""
+        reminder: "f",
     },
     
 ]
@@ -73,8 +74,7 @@ function getHeaderDate() {
 
 // saves data to localStorage
 function saveReminders() {
-    // localStorage.setItem("myDay", JSON.stringify(myDay));
-    sessionStorage.setItem("myDay", JSON.stringify(myDay));
+    localStorage.setItem("myDay", JSON.stringify(myDay));
 }
 
 // sets any data in localStorage to the view
@@ -85,7 +85,7 @@ function displayReminders() {
 }
 
 // sets any existing localStorage data to the view if it exists
-function init() {
+function showInitial() {
     var storedDay = JSON.parse(localStorage.getItem("myDay"));
 
     if (storedDay) {
@@ -147,15 +147,15 @@ myDay.forEach(function(thisHour) {
 })
 
 // loads any existing localstorage data after components created
-init();
+showInitial();
 
 
 // saves data to be used in localStorage
-$(".saveBtn").on("click", function(event) {
-    event.preventDefault();
-    var saveIndex = $(this).siblings(".description").children(".future").attr("id");
-    myDay[saveIndex].reminder = $(this).siblings(".description").children(".future").val();
-    console.log(saveIndex);
-    saveReminders();
-    displayReminders();
-})
+ $(".saveBtn").on("click", function(event) {
+     event.preventDefault();
+     var saveIndex = $(this).siblings(".description").children(".future").attr("id");
+     myDay[saveIndex].keys("reminder") = $(this).siblings(".description").children(".future").val();
+     console.log(saveIndex);
+     saveReminders();
+     displayReminders();
+ })
